@@ -9,20 +9,28 @@ public enum SpawnDir {
  Y, 
  Z
 }
+[Serializable]
+public class titleHolderObject
+{
+    public GameObject tileHolder; 
+    public Bounds  titleBounds ;
 
-
+    public List<BlockObjectWithRandom> blocksInGame;
+}
 // Based Off https://gist.github.com/mdomrach/a66602ee85ce45f8860c36b2ad31ea14
 
 public class Basic3dTileGridGen : MonoBehaviour
 {
-    public List<BlockObject> blockObjectPrefabs; 
+    public List<BlockObjectWithRandom> blockObjectPrefabs; 
     public int GridWidthF;
     public int GridLengthF = 4;
 
     public float blockBuildTime = 0.3f; 
-    public List<BlockObject> blocksInGame;
+  //  public List<BlockObject> blocksInGame;
     public List< int> publicIndecies;
-    public BlockObject defaultBlock;
+    public BlockObjectWithRandom defaultBlock;
+    public List<titleHolderObject> tileHolders;
+    //public Vector3 titleHolderSiz
     void OnValidate()
     {
         // Gen(); 
@@ -61,32 +69,30 @@ public class Basic3dTileGridGen : MonoBehaviour
             indicies.Add(GridLengthF * i + 2);
             indicies.Add(GridLengthF * i + 3);
         }
-        //publicPoints = verticies; 
-        /*
-        MeshFilter filter = gameObject.GetComponent<MeshFilter>();
-        var mesh = new Mesh();
-        mesh.vertices = verticies.ToArray();
-        mesh.SetIndices(indicies.ToArray(), MeshTopology.Lines, 0);
-        filter.mesh = mesh;
-      
-        MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
-        meshRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        meshRenderer.material.color = Color.white;
-        */
+       
         publicIndecies = indicies;
 
         StartCoroutine( Gen3dTiles(verticies)); 
     }
 
-    private IEnumerator Gen3dTiles( List <Vector3> verticies)
+    public IEnumerator Gen3dTiles( List <Vector3> verticies, int tileHolderIndex = 0 )
     {
-        blocksInGame.Clear();
-        foreach (Transform  oldBlock in  transform)
-       {
 
-           Destroy(oldBlock.gameObject); 
+        if(tileHolders.Count -1  < tileHolderIndex)
+        {
+            tileHolders.Add(new titleHolderObject()); 
 
-       }
+        }
+        var currentTileHolderObject = tileHolders[tileHolderIndex];
+      
+        if(currentTileHolderObject.tileHolder)
+        {
+            Destroy(currentTileHolderObject.tileHolder); 
+        }
+        currentTileHolderObject.tileHolder = new GameObject("Tile Holder:" + currentTileHolderObject);
+        currentTileHolderObject.tileHolder.transform.parent = transform;
+        currentTileHolderObject.blocksInGame = new List<BlockObjectWithRandom>(); 
+
        
 
         foreach (var indc in publicIndecies)
@@ -99,7 +105,7 @@ public class Basic3dTileGridGen : MonoBehaviour
 
 
 
-                    BlockObject blockObjectPrefab = null; 
+                    BlockObjectWithRandom blockObjectPrefab = null; 
                     var newVert = new Vector3(vert.x + indc, 0, vert.z);
 
                     foreach (var  blockPreFabThing in blockObjectPrefabs)
@@ -116,7 +122,7 @@ public class Basic3dTileGridGen : MonoBehaviour
                         blockObjectPrefab = defaultBlock; 
                     }
                     bool build = true; 
-                        foreach( var block in blocksInGame)
+                        foreach( var block in currentTileHolderObject. blocksInGame)
                         {
                             if(block.currentLocation == newVert)
                         {
@@ -126,15 +132,15 @@ public class Basic3dTileGridGen : MonoBehaviour
                         }
                     if (build ) 
                     {
-                        var newBlockOb = new BlockObject();
+                        var newBlockOb = new BlockObjectWithRandom();
 
                         //vert.y = indc; 
                         newBlockOb.prefab = Instantiate(blockObjectPrefab.prefab, newVert, transform.rotation);
-                        newBlockOb.prefab.transform.parent = transform;
+                        newBlockOb.prefab.transform.parent = currentTileHolderObject.tileHolder.transform;
                       
                         newBlockOb.name += newVert.ToString();
                         newBlockOb.currentLocation = newVert;
-                        blocksInGame.Add(newBlockOb);
+                      currentTileHolderObject.  blocksInGame.Add(newBlockOb);
                     }
                         if (blockBuildTime > 0.1f)
                     {
@@ -144,6 +150,18 @@ public class Basic3dTileGridGen : MonoBehaviour
             }
 
         }
-         yield return new WaitForSeconds(5);
+
+        // calculate title holder size
+
+        currentTileHolderObject.titleBounds = new Bounds(currentTileHolderObject.tileHolder. transform.position, Vector3.zero);
+
+        foreach (Renderer r in currentTileHolderObject.tileHolder. GetComponentsInChildren<Renderer>())
+        {
+            currentTileHolderObject.titleBounds.Encapsulate(r.bounds);
+        }
+
+        currentTileHolderObject.tileHolder.transform.localPosition = new Vector3(0, 0, 0);
+
+        yield return new WaitForSeconds(5);
     }
 }
