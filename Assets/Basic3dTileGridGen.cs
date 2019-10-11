@@ -31,6 +31,8 @@ public class Basic3dTileGridGen : MonoBehaviour
     public BlockObjectWithRandom defaultBlock;
     public List<titleHolderObject> tileHolders;
     //public Vector3 titleHolderSiz
+    public bool manualGenerate; 
+
     void OnValidate()
     {
         // Gen(); 
@@ -47,11 +49,13 @@ public class Basic3dTileGridGen : MonoBehaviour
        // defaultBlock.prefabSize
         blockObjectPrefabs = blockObjectPrefabs.OrderBy(o => o.spawnDivisibleFloat).ToList();
         blockObjectPrefabs.Reverse();
-        Gen();      
+        if (!manualGenerate)
+        {
+            Gen();
+        }
     }
-    void Gen()
-    {
-       
+    public void Gen(int tileHolderIndex = 0 )
+    {       
         var verticies = new List<Vector3>();
 
         var indicies = new List<int>();
@@ -66,10 +70,10 @@ public class Basic3dTileGridGen : MonoBehaviour
        
         publicIndecies = indicies;
 
-        StartCoroutine( Gen3dTiles(verticies)); 
+        StartCoroutine( Gen3dTiles(verticies , tileHolderIndex) ); 
     }
 
-    public IEnumerator Gen3dTiles( List <Vector3> verticies, int tileHolderIndex = 0 )
+    public IEnumerator Gen3dTiles( List <Vector3> verticies, int tileHolderIndex  )
     {
 
         if(tileHolders.Count -1  < tileHolderIndex)
@@ -98,24 +102,14 @@ public class Basic3dTileGridGen : MonoBehaviour
                     BlockObjectWithRandom blockObjectPrefab;
                    // Vector3 newVert;
                     GetBlockPreb( vert, out blockObjectPrefab);
-                    bool build = true;
-                    foreach (var block in currentTileHolderObject.blocksInGame)
-                    {
-                        if (block.currentLocation == vert)
-                        {
-                            build = false;
-                        }
 
-                    }
-                    if (build)
-                    {
                         var newBlockOb = new BlockObjectWithRandom();
 
                         //vert.y = indc; 
                         newBlockOb.prefab = Instantiate(blockObjectPrefab.prefab, vert, transform.rotation);
                         newBlockOb.prefab.transform.parent = currentTileHolderObject.tileHolder.transform;
 
-                        newBlockOb.name += vert.ToString();
+                    newBlockOb.prefab.name = newBlockOb.prefab.name + vert; 
                         newBlockOb.currentLocation = vert;
                         currentTileHolderObject.blocksInGame.Add(newBlockOb);
                     }
@@ -123,7 +117,7 @@ public class Basic3dTileGridGen : MonoBehaviour
                     {
                         yield return new WaitForSeconds(blockBuildTime);
                     }
-                }
+                
             }
 
         
@@ -147,8 +141,22 @@ public class Basic3dTileGridGen : MonoBehaviour
         yield return new WaitForSeconds(5);
     }
 
+
+
     public void GetBlockPreb( Vector3 vert, out BlockObjectWithRandom blockObjectPrefab)
     {
+
+       
+       var exactPrefab =  blockObjectPrefabs.Find(exactMatch => exactMatch.exactSpawnPoint == vert);
+        if (exactPrefab !=null  &&  exactPrefab.exactSpawner)
+        {
+          
+                blockObjectPrefab = exactPrefab;
+                return;
+
+           
+        }
+
         blockObjectPrefab = null;
        // newVert = new Vector3(vert.x + indc, 0, vert.z);
         foreach (var blockPreFabThing in blockObjectPrefabs)

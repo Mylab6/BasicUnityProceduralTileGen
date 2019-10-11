@@ -13,6 +13,8 @@ public class BlockObjectWithRandom : BlockObjectBase
     [Tooltip("How likely the block is to spawn")]
     [Range(0.01f, 1f)]
     public float probability = 1;
+    public bool exactSpawner; 
+    public Vector3 exactSpawnPoint = new Vector3(999,999,999);
 
     public float spawnDivisibleFloat
     {
