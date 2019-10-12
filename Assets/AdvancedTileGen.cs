@@ -1,6 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+[Serializable]
+public class NavOptions
+{
+    public Boolean allowNav;
+    public void addNav(List<BlockObjectWithRandom> childrenToAddNav)
+    {
+        if (allowNav)
+        {
+            childrenToAddNav.ForEach(childTransform =>
+           {
+
+               //var navSurface = new NavMeshSurface();
+               //
+               //navSurface.gameObject = transform.gameObject;
+               //  transform.gameObject.AddComponent( NavMeshSurface);
+
+               NavMeshSurface sc = childTransform.prefab.AddComponent(typeof(NavMeshSurface)) as NavMeshSurface;
+               NavMeshLink lk = childTransform.prefab.AddComponent(typeof(NavMeshLink)) as NavMeshLink;
+
+           });
+
+        }
+
+    }
+
+}
 public class AdvancedTileGen : Basic3dTileGridGen
 {
     public bool allowForcedEndAndStart = true;
@@ -11,7 +38,7 @@ public class AdvancedTileGen : Basic3dTileGridGen
     public int forceLimit;
     public List<GameObject> newBlocks;
     public GameObject reffNavMesh;
-
+    public NavOptions navOptions;
 
     //public NavMeshSurface[] surfaces;
     public Transform[] objectsToRotate;
@@ -23,6 +50,7 @@ public class AdvancedTileGen : Basic3dTileGridGen
         try
         {
             createBlocksPattern();
+            navOptions.addNav(tileHolders[0].blocksInGame);   //.transform.GetChild )
             // BuildNavMesh();
         }
         catch (Exception err)
