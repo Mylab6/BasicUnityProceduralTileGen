@@ -9,5 +9,8 @@ For now this will ONLY generate tiles in 2 dimensions, as the project progresses
 Also , this ONLY will run at runtime, but I'm working on a 'bake' scene option. 
 
 Relies upon 
-https://github.com/Unity-Technologies/NavMeshComponents
+https://github.com/Unity-Technologies/NavMeshComponents - May remove and go with a more basic path finding solution 
 Which has been released under the MIT License, I REALLY want to show off using nav agenets to move around generated levels , but that's not really possible without adding the Unity scripts. 
+
+Easy Buttons, another Mit project 
+https://github.com/madsbangh/EasyButtons
