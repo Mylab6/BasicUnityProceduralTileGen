@@ -300,12 +300,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5068645187599465856}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1171522536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2174187724464399088, guid: 8067974f920de4c4883de540f2aaf9fa,
-    type: 3}
-  m_PrefabInstance: {fileID: 2174187723814122959}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1199309106
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +514,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640700097}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1722535662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5328031829363758890, guid: 019b098bf1e73f744bd91c4f5abe44ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 5328031829587837470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2019462510
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,14 +551,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockObjectPrefabs:
   - name: RedCube
-    prefab: {fileID: 1171522536}
+    prefab: {fileID: 1722535662}
     currentLocation: {x: 0, y: 0, z: 0}
     spawnDivisible: {x: 1, y: 1, z: 1}
-    probability: 0.5298
+    probability: 1
     exactSpawner: 0
     exactSpawnPoint: {x: 0, y: 0, z: 0}
-  GridWidthF: 3
-  GridLengthF: 4
+  GridWidthF: 10
+  GridLengthF: 10
   targetRotation: {x: 0, y: 0, z: 0}
   blockBuildTime: 0
   publicIndecies: 
@@ -572,6 +572,42 @@ MonoBehaviour:
     exactSpawnPoint: {x: 999, y: 999, z: 999}
   tileHolders: []
   manualGenerate: 0
+  paternBlocks:
+  - name: 
+    prefab: {fileID: 2101457077}
+    currentLocation: {x: 0, y: 0, z: 0}
+    spawnDivisible: {x: 0, y: 0, z: 0}
+    probability: 0
+    exactSpawner: 0
+    exactSpawnPoint: {x: 0, y: 0, z: 0}
+    replaceRules:
+      MustAlwaysConnect: 0
+      startingVector: 0
+      endVector: 0
+      MustEndOnX: 0
+      MustEndOnZ: 0
+    possibleStarts: []
+    possibleEnds: []
+    randomlySelectedStart:
+      name: 
+      prefab: {fileID: 0}
+      currentLocation: {x: 0, y: 0, z: 0}
+      spawnDivisible: {x: 1, y: 1, z: 1}
+      probability: 1
+      exactSpawner: 0
+      exactSpawnPoint: {x: 999, y: 999, z: 999}
+    randomlySelectedEnd:
+      name: 
+      prefab: {fileID: 0}
+      currentLocation: {x: 0, y: 0, z: 0}
+      spawnDivisible: {x: 1, y: 1, z: 1}
+      probability: 1
+      exactSpawner: 0
+      exactSpawnPoint: {x: 999, y: 999, z: 999}
+    edgeX: 0
+    edgeZ: 0
+    blocksToReplace: []
+  indexToCreatePatternOn: 0
 --- !u!4 &2019462512
 Transform:
   m_ObjectHideFlags: 0
@@ -587,6 +623,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2101457077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8954001795914868572, guid: bc6c71d7eed07b54a9fe050546e21b5b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7092963830454007317}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2174187723814122959
 PrefabInstance:
   m_ObjectHideFlags: 0

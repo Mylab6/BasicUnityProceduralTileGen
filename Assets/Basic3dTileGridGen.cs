@@ -22,7 +22,7 @@ public class titleHolderObject
 public class Basic3dTileGridGen : MonoBehaviour
 {
     public List<BlockObjectWithRandom> blockObjectPrefabs; 
-    public int GridWidthF;
+    public int GridWidthF = 4 ;
     public int GridLengthF = 4;
     public Vector3 targetRotation;
     public float blockBuildTime = 0.3f; 
@@ -138,10 +138,15 @@ public class Basic3dTileGridGen : MonoBehaviour
         var newY = currentTileHolderObject.targetRotation.y;
         var newZ = currentTileHolderObject.targetRotation.z; 
         currentTileHolderObject.tileHolder.transform.Rotate(newX, newY,newZ,  Space.Self);
+        PostGenActions(); 
         yield return new WaitForSeconds(5);
+
     }
 
-
+    public virtual void PostGenActions ()
+    {
+        Debug.Log("Post Gen Actions Not defined on " + gameObject.name); 
+    }
 
     public void GetBlockPreb( Vector3 vert, out BlockObjectWithRandom blockObjectPrefab)
     {
