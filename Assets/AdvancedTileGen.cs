@@ -10,6 +10,7 @@ public class AdvancedTileGen : Basic3dTileGridGen
     public int attempts = 0;
     public int forceLimit;
     public List<GameObject> newBlocks;
+    public GameObject reffNavMesh;
 
 
     //public NavMeshSurface[] surfaces;
@@ -22,7 +23,7 @@ public class AdvancedTileGen : Basic3dTileGridGen
         try
         {
             createBlocksPattern();
-            BuildNavMesh();
+            // BuildNavMesh();
         }
         catch (Exception err)
         {
@@ -35,26 +36,6 @@ public class AdvancedTileGen : Basic3dTileGridGen
         }
 
         //Debug.Log("Post Gen Actions Not defined on " + gameObject.name);
-    }
-
-    private void BuildNavMesh()
-    {
-
-
-
-
-
-
-
-        for (int j = 0; j < objectsToRotate.Length; j++)
-        {
-            objectsToRotate[j].localRotation = Quaternion.Euler(new Vector3(0, System.Random.Range(0, 360), 0));
-        }
-
-        // for (int i = 0; i < surfaces.Length; i++)
-        // {
-        //   surfaces[i].BuildNavMesh();
-        // }
     }
 
 
@@ -99,6 +80,22 @@ public class AdvancedTileGen : Basic3dTileGridGen
 
        });
     }
+    public void customOnValidate()
+
+    {
+        return;
+        if (reffNavMesh)
+        {
+            DestroyImmediate(reffNavMesh);
+
+        }
+        reffNavMesh = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        reffNavMesh.transform.position = transform.position;
+        reffNavMesh.transform.localScale = new Vector3(GridWidthF, 0, GridLengthF);
+        reffNavMesh.transform.parent = transform;
+        //      public int GridWidthF = 4;
+        //public int GridLengthF = 4;
+    }
 
     private void SpawnNewBlock(BlockObjectWithRandom patternBlock, BlockObjectWithRandom replaceableBlock, titleHolderObject currentTileHolder, String newBlockName = "Pattern Block ")
     {
@@ -109,4 +106,5 @@ public class AdvancedTileGen : Basic3dTileGridGen
         newBlock.name = newBlockName + savedLocation;
         newBlocks.Add(newBlock);
     }
+
 }
