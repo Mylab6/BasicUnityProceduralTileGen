@@ -203,6 +203,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 85.785, y: 0, z: 0}
+--- !u!1 &739264959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2174187724464399088, guid: 8067974f920de4c4883de540f2aaf9fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 2174187723814122959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &876017970
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +300,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1114269866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3245985272851344108, guid: 925e7aa4068b6ae4a846b8e0c9b14372,
+    type: 3}
+  m_PrefabInstance: {fileID: 3245985271436958246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1145261920 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6375748823769281686, guid: 3f84242a08e457e47b65bfb919620673,
@@ -500,7 +512,7 @@ MonoBehaviour:
     edgeZ: 0
     blocksToReplace: []
   - name: 
-    prefab: {fileID: 2101457077}
+    prefab: {fileID: 1114269866}
     currentLocation: {x: 0, y: 0, z: 0}
     spawnDivisible: {x: 0, y: 0, z: 0}
     probability: 0
@@ -552,59 +564,7 @@ MonoBehaviour:
     edgeZ: 0
     blocksToReplace: []
   - name: 
-    prefab: {fileID: 2101457077}
-    currentLocation: {x: 0, y: 0, z: 0}
-    spawnDivisible: {x: 0, y: 0, z: 0}
-    probability: 0
-    exactSpawner: 0
-    exactSpawnPoint: {x: 0, y: 0, z: 0}
-    forceStartBlock:
-      name: 
-      prefab: {fileID: 425455713887928302, guid: 04dfd0ec70b579942a439f40d1658910,
-        type: 3}
-      currentLocation: {x: 0, y: 0, z: 0}
-      spawnDivisible: {x: 1, y: 1, z: 1}
-      probability: 1
-      exactSpawner: 0
-      exactSpawnPoint: {x: 999, y: 999, z: 999}
-    forceEndBlock:
-      name: 
-      prefab: {fileID: 4271365395884202391, guid: 770f0cec567dba340a1342488ccc5d5e,
-        type: 3}
-      currentLocation: {x: 0, y: 0, z: 0}
-      spawnDivisible: {x: 1, y: 1, z: 1}
-      probability: 1
-      exactSpawner: 0
-      exactSpawnPoint: {x: 999, y: 999, z: 999}
-    replaceRules:
-      MustAlwaysConnect: 0
-      startingVector: 2
-      endVector: 2
-      MustEndOnX: 0
-      MustEndOnZ: 0
-    possibleStarts: []
-    possibleEnds: []
-    randomlySelectedStart:
-      name: 
-      prefab: {fileID: 0}
-      currentLocation: {x: 0, y: 0, z: 0}
-      spawnDivisible: {x: 1, y: 1, z: 1}
-      probability: 1
-      exactSpawner: 0
-      exactSpawnPoint: {x: 999, y: 999, z: 999}
-    randomlySelectedEnd:
-      name: 
-      prefab: {fileID: 0}
-      currentLocation: {x: 0, y: 0, z: 0}
-      spawnDivisible: {x: 1, y: 1, z: 1}
-      probability: 1
-      exactSpawner: 0
-      exactSpawnPoint: {x: 999, y: 999, z: 999}
-    edgeX: 0
-    edgeZ: 0
-    blocksToReplace: []
-  - name: 
-    prefab: {fileID: 2101457077}
+    prefab: {fileID: 739264959}
     currentLocation: {x: 0, y: 0, z: 0}
     spawnDivisible: {x: 0, y: 0, z: 0}
     probability: 0

@@ -57,28 +57,32 @@ public class AdvancedTileGen : Basic3dTileGridGen
            });
 
 
-           if (allowForcedEndAndStart)
-           {
-               if (patternBlock.forceStartBlock != null)
-               {
 
-                   var startBlockForce = newBlocks.Find(x => x.transform.localPosition == patternBlock.randomlySelectedStart.currentLocation);
-                   Destroy(startBlockForce);
-                   SpawnNewBlock(patternBlock.forceStartBlock, patternBlock.randomlySelectedStart, currentTileHolder, "Start Block");
-               }
-
-               if (patternBlock.forceEndBlock != null)
-               {
-                   var endBlockForce = newBlocks.Find(x => x.transform.localPosition == patternBlock.randomlySelectedEnd.currentLocation);
-                   Destroy(endBlockForce);
-                   SpawnNewBlock(patternBlock.forceEndBlock, patternBlock.randomlySelectedEnd, currentTileHolder, "EndBlock ");
-               }
-           }
            //  patternBlock.randomlySelectedEnd;
            //  blocksToReplace.Add(randomlySelectedStart);
            // blocksToReplace.Add(randomlySelectedEnd);
 
        });
+
+        if (allowForcedEndAndStart)
+        {
+            var locPatternBlock = paternBlocks[0];
+
+            if (locPatternBlock.forceStartBlock != null)
+            {
+
+                var startBlockForceArray = newBlocks.FindAll(x => x.transform.localPosition == locPatternBlock.randomlySelectedStart.currentLocation);
+                startBlockForceArray.ForEach(endForce => Destroy(endForce));
+                SpawnNewBlock(locPatternBlock.forceStartBlock, locPatternBlock.randomlySelectedStart, currentTileHolder, "Start Block");
+            }
+            if (locPatternBlock.forceEndBlock != null)
+            {
+                var endBlockForceArray = newBlocks.FindAll(x => x.transform.localPosition == locPatternBlock.randomlySelectedEnd.currentLocation);
+                endBlockForceArray.ForEach(endForce => Destroy(endForce));
+                SpawnNewBlock(locPatternBlock.forceEndBlock, locPatternBlock.randomlySelectedEnd, currentTileHolder, "EndBlock ");
+            }
+
+        }
     }
     public void customOnValidate()
 

@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/AdvancedLabs.unity
+- path: Assets/MultiPathed.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
