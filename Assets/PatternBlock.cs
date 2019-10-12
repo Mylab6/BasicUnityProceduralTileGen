@@ -31,6 +31,15 @@ public class ReplaceRuleLogic
 [Serializable]
 public class PatternBlock : BlockObjectWithRandom
 {
+
+
+    [Tooltip("If you need to start with a certain block ")]
+    public BlockObjectWithRandom forceStartBlock;
+    [Tooltip("If you need to end with a certain block ")]
+
+    public BlockObjectWithRandom forceEndBlock;
+
+
     public ReplaceRuleLogic replaceRules;
     public List<BlockObjectWithRandom> possibleStarts;
     public List<BlockObjectWithRandom> possibleEnds;
@@ -54,23 +63,32 @@ public class PatternBlock : BlockObjectWithRandom
         // UnityEngine.Random.Range(
 
 
-        blocksToReplace.Add(randomlySelectedStart);
-        blocksToReplace.Add(randomlySelectedEnd);
+        // blocksToReplace.Add(randomlySelectedStart);
+        //blocksToReplace.Add(randomlySelectedEnd);
         return blocksToReplace;
     }
-    private void addFillerBlocks(BlockObjectWithRandom lastBlock)
+    private void addFillerBlocks(BlockObjectWithRandom lastBlock, bool forceZ = true)
     {
 
+        if (lastBlock.currentLocation.x == edgeX && lastBlock.currentLocation.z == edgeZ)
+        {
+            //return;
+        }
         Vector3 newLocation = new Vector3();
 
+        //  if (UnityEngine.Random.value < 0.5f)
 
-        if (UnityEngine.Random.value < 0.5f && lastBlock.currentLocation.x != edgeX)
+        if ((UnityEngine.Random.value < 0.5f) && lastBlock.currentLocation.x != edgeX)
         {
+            forceZ = false;
             newLocation = lastBlock.currentLocation + new Vector3(1, 0, 0);
             // incerment on x 
         }
         else if (lastBlock.currentLocation.z != edgeZ)
+        //else
+
         {
+            forceZ = true;
             newLocation = lastBlock.currentLocation + new Vector3(0, 0, 1);
 
             // incerment on z 
@@ -83,7 +101,7 @@ public class PatternBlock : BlockObjectWithRandom
             return;
         }
 
-        addFillerBlocks(blockToReplace);
+        addFillerBlocks(blockToReplace, forceZ);
 
     }
     private void SelectEdgeBlock(List<BlockObjectWithRandom> blockObs, EdgeType edgeType)

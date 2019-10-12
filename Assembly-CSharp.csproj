@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AdvancedTileGen.cs" />
+    <Compile Include="Assets\BallNav.cs" />
     <Compile Include="Assets\Basic3dTileGridGen.cs" />
     <Compile Include="Assets\BasicSpin.cs" />
     <Compile Include="Assets\BlockObjectBase.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\BlockObjectWithRandom.cs" />
     <Compile Include="Assets\EasyDrop.cs" />
     <Compile Include="Assets\PatternBlock.cs" />
+    <Compile Include="Assets\SpawnBall.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Keith/TileLab/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
