@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
 [Serializable]
 public class NavOptions
 {
@@ -11,22 +12,37 @@ public class NavOptions
         if (allowNav)
         {
             childrenToAddNav.ForEach(childTransform =>
-           {
+            {
 
-               //var navSurface = new NavMeshSurface();
-               //
-               //navSurface.gameObject = transform.gameObject;
-               //  transform.gameObject.AddComponent( NavMeshSurface);
-
-               NavMeshSurface sc = childTransform.prefab.AddComponent(typeof(NavMeshSurface)) as NavMeshSurface;
-               NavMeshLink lk = childTransform.prefab.AddComponent(typeof(NavMeshLink)) as NavMeshLink;
-
-           });
+                NavMeshAdder(childTransform.prefab);
+            });
 
         }
 
     }
 
+    public void NavMeshAdder(GameObject childTransform)
+    {
+        // NavMeshSurface nm = childTransform.AddComponent(typeof(NavMeshSurface)) as NavMeshSurface;
+        //  NavMeshLink lk = childTransform.AddComponent(typeof(NavMeshLink)) as NavMeshLink;
+        NavMeshSourceTag sourceTag = childTransform.AddComponent(typeof(NavMeshSourceTag)) as NavMeshSourceTag;
+        //nm.buildHeightMesh = true;
+        if (childTransform.transform.childCount != 0)
+        {
+            NavMeshObstacle obstacle = childTransform.AddComponent(typeof(NavMeshObstacle)) as NavMeshObstacle;
+            // and for it's children 
+            for (int i = 0; i < childTransform.transform.childCount; i++)
+            {
+                var childAgain = childTransform.transform.GetChild(i);
+                NavMeshObstacle childObstacle = childAgain.gameObject.AddComponent(typeof(NavMeshObstacle)) as NavMeshObstacle;
+
+                //   child.
+
+            }
+
+        }
+        //nm.BuildNavMesh();
+    }
 }
 public class AdvancedTileGen : Basic3dTileGridGen
 {
@@ -39,7 +55,7 @@ public class AdvancedTileGen : Basic3dTileGridGen
     public List<GameObject> newBlocks;
     public GameObject reffNavMesh;
     public NavOptions navOptions;
-
+    public GameObject navMeshCubeChild;
     //public NavMeshSurface[] surfaces;
     public Transform[] objectsToRotate;
     public override void PostGenActions()
@@ -112,21 +128,10 @@ public class AdvancedTileGen : Basic3dTileGridGen
 
         }
     }
-    public void customOnValidate()
+    public void OnValidate()
 
     {
-        return;
-        if (reffNavMesh)
-        {
-            DestroyImmediate(reffNavMesh);
 
-        }
-        reffNavMesh = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        reffNavMesh.transform.position = transform.position;
-        reffNavMesh.transform.localScale = new Vector3(GridWidthF, 0, GridLengthF);
-        reffNavMesh.transform.parent = transform;
-        //      public int GridWidthF = 4;
-        //public int GridLengthF = 4;
     }
 
     private void SpawnNewBlock(BlockObjectWithRandom patternBlock, BlockObjectWithRandom replaceableBlock, titleHolderObject currentTileHolder, String newBlockName = "Pattern Block ")
@@ -137,6 +142,11 @@ public class AdvancedTileGen : Basic3dTileGridGen
         newBlock.transform.localPosition = savedLocation;
         newBlock.name = newBlockName + savedLocation;
         newBlocks.Add(newBlock);
+        if (navOptions.allowNav)
+        {
+            navOptions.NavMeshAdder(newBlock);
+
+        }
     }
 
 }

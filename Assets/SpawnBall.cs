@@ -10,7 +10,9 @@ public class SpawnBall : MonoBehaviour
     {
 
         var gameOb = Instantiate(prefab);
-        gameOb.transform.position = transform.position + posOffSet;
+        gameOb.transform.parent = transform;
+        //  gameOb.transform.localPosition = transform.position + posOffSet;
+        gameOb.transform.localPosition = posOffSet;
 
 
     }
