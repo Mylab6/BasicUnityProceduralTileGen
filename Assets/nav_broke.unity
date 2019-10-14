@@ -383,10 +383,10 @@ MonoBehaviour:
     probability: 1
     exactSpawner: 0
     exactSpawnPoint: {x: 0, y: 0, z: 0}
-  GridWidthF: 50
-  GridLengthF: 50
+  GridWidthF: 100
+  GridLengthF: 100
   targetRotation: {x: 0, y: 0, z: 0}
-  blockBuildTime: 0
+  blockBuildTime: 0.1
   publicIndecies: 
   defaultBlock:
     name: 
@@ -459,7 +459,11 @@ MonoBehaviour:
   newBlocks: []
   navOptions:
     allowNav: 1
-    obstacleRadius: 1.00001
+    obstacleRadius: 1
+    defaultPrefabHasObsticale: 0
+    defaultPrefabChildHasObstacle: 0
+    forceCapsuleObstacleForPrefab: 0
+    forceCapsuleObstacleForChild: 0
   objectsToRotate: []
 --- !u!4 &2019462512
 Transform:

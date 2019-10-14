@@ -74,6 +74,7 @@
     <Compile Include="Assets\EasyButtons\Assets\EasyButtons\Examples\CustomEditorButtonsExample\CustomEditorButtonsExample.cs" />
     <Compile Include="Assets\EasyButtons\Assets\EasyButtons\Examples\ScriptableObjectExample\ScriptableObjectExample.cs" />
     <Compile Include="Assets\EasyDrop.cs" />
+    <Compile Include="Assets\GameSettings.cs" />
     <Compile Include="Assets\PatternBlock.cs" />
     <Compile Include="Assets\SpawnBall.cs" />
     <None Include="Assets\EasyButtons\LICENSE.txt" />

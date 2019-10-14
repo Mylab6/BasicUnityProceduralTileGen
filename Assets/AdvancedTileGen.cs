@@ -7,6 +7,12 @@ using UnityEngine.AI;
 public class NavOptions
 {
     public Boolean allowNav;
+    public float obstacleRadius = 1;
+    public Boolean defaultPrefabHasObsticale = false;
+    public Boolean defaultPrefabChildHasObstacle = false;
+    public Boolean forceCapsuleObstacleForPrefab;
+    public Boolean forceCapsuleObstacleForChild;
+
     public void addNav(List<BlockObjectWithRandom> childrenToAddNav)
     {
         if (allowNav)
@@ -22,6 +28,8 @@ public class NavOptions
     }
 
     public void NavMeshAdder(GameObject childTransform)
+
+
     {
         // NavMeshSurface nm = childTransform.AddComponent(typeof(NavMeshSurface)) as NavMeshSurface;
         //  NavMeshLink lk = childTransform.AddComponent(typeof(NavMeshLink)) as NavMeshLink;
@@ -29,13 +37,31 @@ public class NavOptions
         //nm.buildHeightMesh = true;
         if (childTransform.transform.childCount != 0)
         {
-            NavMeshObstacle obstacle = childTransform.AddComponent(typeof(NavMeshObstacle)) as NavMeshObstacle;
+
+            if (defaultPrefabHasObsticale)
+            {
+                NavMeshObstacle obstacle = childTransform.AddComponent(typeof(NavMeshObstacle)) as NavMeshObstacle;
+                obstacle.radius = obstacleRadius;
+                if (forceCapsuleObstacleForPrefab)
+                {
+                    obstacle.shape = NavMeshObstacleShape.Capsule;
+                }
+
+            }
             // and for it's children 
             for (int i = 0; i < childTransform.transform.childCount; i++)
             {
-                var childAgain = childTransform.transform.GetChild(i);
-                NavMeshObstacle childObstacle = childAgain.gameObject.AddComponent(typeof(NavMeshObstacle)) as NavMeshObstacle;
+                if (defaultPrefabChildHasObstacle)
+                {
+                    var childAgain = childTransform.transform.GetChild(i);
 
+                    NavMeshObstacle childObstacle = childAgain.gameObject.AddComponent(typeof(NavMeshObstacle)) as NavMeshObstacle;
+                    childObstacle.radius = obstacleRadius;
+                    if (forceCapsuleObstacleForChild)
+                    {
+                        childObstacle.shape = NavMeshObstacleShape.Capsule;
+                    }
+                }
                 //   child.
 
             }
@@ -53,9 +79,9 @@ public class AdvancedTileGen : Basic3dTileGridGen
     public int attempts = 0;
     public int forceLimit;
     public List<GameObject> newBlocks;
-    public GameObject reffNavMesh;
+    //public GameObject reffNavMesh;
     public NavOptions navOptions;
-    public GameObject navMeshCubeChild;
+    //  public GameObject navMeshCubeChild;
     //public NavMeshSurface[] surfaces;
     public Transform[] objectsToRotate;
     public override void PostGenActions()
