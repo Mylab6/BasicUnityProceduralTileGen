@@ -4,6 +4,8 @@ Very basic unity procedural title gen
 
 Insurctions , clone the repo and open up BreakieWall in the Assets folder. I wanted to see if I could make a breakable wall effect, but simply 
 switch the'Tower' prefab refrenced  in the TileGen object to a different block. 
+
+To check out some basic nav in procedually generated maps, use the 'Nav_Fixed' scene . 
 Advancedlab is where I'm doing most of my work right now. So this is a bruteforce way of of doing it, I'm not combining meshes or anything like that. In general I'd suggest against going above 100x100, the system still works , but Unity's editor can really start to slow down( it crashed hard for me at 1000x1000 . 
 
 Right now I'm looking to make a small tower defense game with this tool, but I could see it being a good foundation for a ton of small projects . 
