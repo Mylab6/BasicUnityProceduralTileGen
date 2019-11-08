@@ -19,3 +19,5 @@ Easy Buttons, another Mit project
 https://github.com/madsbangh/EasyButtons
 
 
+MIT License , but I would love you to drop me a message if you make anything cool ! 
+

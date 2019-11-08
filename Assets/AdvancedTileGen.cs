@@ -42,6 +42,7 @@ public class NavOptions
             {
                 NavMeshObstacle obstacle = childTransform.AddComponent(typeof(NavMeshObstacle)) as NavMeshObstacle;
                 obstacle.radius = obstacleRadius;
+                obstacle.size = new Vector3(1, 1, 1);
                 if (forceCapsuleObstacleForPrefab)
                 {
                     obstacle.shape = NavMeshObstacleShape.Capsule;
@@ -61,6 +62,8 @@ public class NavOptions
                     {
                         childObstacle.shape = NavMeshObstacleShape.Capsule;
                     }
+                    childObstacle.size = new Vector3(1, 1, 1);
+
                 }
                 //   child.
 
