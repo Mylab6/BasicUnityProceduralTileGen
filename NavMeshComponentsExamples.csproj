@@ -57,18 +57,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\RandomInstancing.cs" />
-    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\NavMeshSourceTag.cs" />
-    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\ClickToMove.cs" />
-    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\FreeCam.cs" />
-    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\AgentLinkMover.cs" />
-    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\RandomWalk.cs" />
-    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\SpawnPrefabOnKeyDown.cs" />
     <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\DungeonManager.cs" />
     <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\MeshTool.cs" />
-    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\EnableIffSleeping.cs" />
     <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\Oscillator.cs" />
+    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\AgentLinkMover.cs" />
+    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\NavMeshSourceTag.cs" />
     <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\NavMeshPrefabInstance.cs" />
+    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\ClickToMove.cs" />
+    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\SpawnPrefabOnKeyDown.cs" />
     <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\LocalNavMeshBuilder.cs" />
+    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\FreeCam.cs" />
+    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\EnableIffSleeping.cs" />
+    <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\RandomWalk.cs" />
     <Compile Include="Assets\Samples\NavMesh Components\0.1.0-preview.2\Build And Connect NavMesh Surfaces\Scripts\DestroyOnTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -307,8 +307,8 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.5\net35\unity-custom\nunit.framework.dll</HintPath>
+    <Reference Include="Unity.Analytics.StandardEvents">
+      <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\AnalyticsStandardEvents\Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\Unity.Analytics.Editor.dll</HintPath>
@@ -316,8 +316,8 @@
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\AnalyticsStandardEvents\Unity.Analytics.StandardEvents.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.5\net35\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.1f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
