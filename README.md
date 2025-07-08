@@ -7,8 +7,10 @@ Testted against 6000.0.42f1.7976.8784 !
 Demo, again use Nav_Fixed scene !
 
 <video controls src="Images/20250708-0348-50.1087362.mp4" title="Title"></video>
-Now uses:
-"com.unity.ai.navigation.components": "https://github.com/Unity-Technologies/NavMeshComponents.git#package",
+
+I decided to bring back this project after a good while, here are some old notes. 
+Don't expect regular updates, but this should be cool
+
 
 If the project breaks try going to package manager , then in project. Click NavMesh Components , and then import the samples 
 To check out some basic nav in procedurally generated maps, use the 'Nav_Fixed' scene . 
