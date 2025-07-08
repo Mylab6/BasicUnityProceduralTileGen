@@ -10,7 +10,9 @@ Demo, again use Nav_Fixed scene !
 
 
 **Scene to run:** `Nav_Fixed`  
-[▶️ Watch the demo video](Images/20250708-0348-50.1087362.mp4)
+
+YouTube Demo video 
+https://youtu.be/u--I8GdeUwc
 
 I decided to bring back this project after a good while, here are some old notes. 
 Don't expect regular updates, but this should be cool
