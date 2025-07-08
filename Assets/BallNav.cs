@@ -1,15 +1,14 @@
-﻿using Cinemachine;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-
+using Unity.Cinemachine; 
 public class BallNav : MonoBehaviour
 {
     public Transform goal;
     public bool manual;
     public float manualSpeed = 5;
     public float delay = 6;
-    private CinemachineVirtualCamera vmCam;
+    private Unity.Cinemachine.CinemachineCamera vmCam;
 
     void Update()
     {
@@ -39,9 +38,16 @@ public class BallNav : MonoBehaviour
 
     void Start()
     {
-        vmCam = FindObjectOfType<Cinemachine.CinemachineVirtualCamera>();
-        vmCam.Follow = transform;
-        vmCam.LookAt = transform;
+        try
+        {
+            vmCam = FindFirstObjectByType<Unity.Cinemachine.CinemachineCamera>();
+           vmCam.Follow = transform;
+            vmCam.LookAt = transform;
+        }
+        catch (System.Exception err)
+        {
+
+        }
         if (!manual)
         {
             StartCoroutine(delayToStart());
